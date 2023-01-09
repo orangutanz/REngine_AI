@@ -38,25 +38,30 @@ bool TileMap::LoadTileFiles(const std::string& filePath)
 	imageName = "..\\Resources\\"+ imageName.append(".png");
 	auto imageTexture = LoadTexture(imageName.c_str());	
 	mTileMapTextures.emplace_back(imageTexture);
+	int textureIdx = mTileMapTextures.size() - 1;
 
-	//add tile infos to tileMap
+	//add tile infos 
 	auto tileSize = data.value("TileSize", "Not Found!");
-
 	for (auto tile : data["Tiles"])
 	{
-		cout << "tile: " << tile << endl;
-
+		Tile newTile;
+		newTile.name = tile.value("Name", "TileName");
+		std::string name = "name";
+		newTile.textureMapIdx = textureIdx;
+		newTile.PositionX = tile.value("PositionX", 0);
+		newTile.PositionY = tile.value("PositionY", 0);
+		newTile.height = tile.value("Height", 0);
+		newTile.width = tile.value("Width", 0);
+		auto tileType = tile.value("Type", "Not Found!");
+		if (tileType == "Solid")
+		{
+			newTile.type = Solid;
+		}
+		mTiles.emplace_back(newTile);
 	}
-	
-	for (auto tile : mTiles)
-	{
-
-	}
-	
 
 	f.close();
 	return true;
-
 }
 
 void TileMap::Render()

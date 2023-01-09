@@ -11,7 +11,9 @@ enum TileType
 struct Tile
 {
 	std::string name = "name";
-	int textureIdx;
+	int textureMapIdx;
+	int PositionX;
+	int PositionY;
 	int height;
 	int width;
 	TileType type;
