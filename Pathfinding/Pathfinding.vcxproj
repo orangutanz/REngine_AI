@@ -158,7 +158,7 @@
     <ClInclude Include="TileMap.h" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="..\Resources\DesertMap.txt" />
+    <Text Include="..\Resources\DesertMap.json" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Resources\DesertTiles.json" />

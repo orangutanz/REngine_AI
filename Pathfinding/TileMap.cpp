@@ -9,7 +9,27 @@ using json = nlohmann::json;
 
 bool TileMap::LoadMap(const std::string& filePath)
 {
-	return false;
+	std::ifstream f("..\\Resources\\" + filePath);
+
+	//try to open json file
+	if (!f.is_open())
+	{
+		cout << "LoadMap - Failed! Json file does not open" << endl;
+		return false;
+	}
+
+	//parse the json raw
+	json data = json::parse(f);
+
+	mRows = data.value("Colums", 0);
+	mColums = data.value("Rows", 0); 
+	for (auto i : data["TileIdx"])
+	{
+		mMap.push_back(i);
+	}
+	mMap.size();
+
+	return true;
 }
 
 bool TileMap::LoadTileFiles(const std::string& filePath)
@@ -41,7 +61,7 @@ bool TileMap::LoadTileFiles(const std::string& filePath)
 	int textureIdx = mTileMapTextures.size() - 1;
 
 	//add tile infos 
-	auto tileSize = data.value("TileSize", "Not Found!");
+	mTileSize = data.value("TileSize", 0);
 	for (auto tile : data["Tiles"])
 	{
 		Tile newTile;
@@ -67,10 +87,23 @@ bool TileMap::LoadTileFiles(const std::string& filePath)
 void TileMap::Render()
 {
 	Vector2 tilePos = { 0.0f , 0.0f };
-	for (auto i : mTiles)
+	Rectangle rec;
+	int mapIdx = 0;
+
+	for (int i = 0; i < mRows; ++i)
 	{
-		Rectangle rec = { i.PositionX,i.PositionY,i.width,i.height };
-		DrawTextureRec(mTileMapTextures[i.textureMapIdx], rec, tilePos, WHITE);
-		tilePos.x += 32.f;
+		for (int j = 0; j < mColums; ++j)
+		{
+			tilePos = { (float)i * mTileSize,(float)j * mTileSize };
+			int tileIdx = mMap[mapIdx];
+			Tile tile = mTiles[tileIdx];
+			rec.x = tile.PositionX;
+			rec.y = tile.PositionY;
+			rec.width = tile.width;
+			rec.height = tile.height;
+
+			DrawTextureRec(mTileMapTextures[tile.textureMapIdx], rec, tilePos, WHITE);
+			mapIdx++;
+		}
 	}
 }

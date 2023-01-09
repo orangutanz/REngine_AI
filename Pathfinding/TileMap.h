@@ -34,4 +34,5 @@ private:
 
 	int mRows;
 	int mColums;
+	int mTileSize;
 };

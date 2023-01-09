@@ -1,6 +1,6 @@
 {
 	"ImageName": "Atlas32",
-	"TileSize": "32",
+	"TileSize": 32,
 	"Tiles": [
 		{
 			"Name": "Dirt1",
@@ -66,6 +66,5 @@
 			"Height": 32,
 			"Type": "Solid"
 		}
-
 	]
 }
