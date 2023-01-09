@@ -7,14 +7,17 @@
 
 REng::Math::Vector2 position;
 Texture2D myTexture;
+TileMap myTileMap;
 
 //initialized game infos
 void GameInint()
 {
 	std::string fullPath;
 	REng::ResourcesFullPath("bird.png", fullPath);
-
 	myTexture = LoadTexture(fullPath.c_str());
+
+	myTileMap.LoadTileFiles("DesertTiles.json"); 
+	myTileMap.LoadMap("DesertMap.txt"); 
 }
 
 //game loop

@@ -1,0 +1,72 @@
+{
+	"Image": "Atlas",
+	"TileSize": 16,
+	"Tiles": [
+		{
+			"Name": "Dirt_1",
+			"PositionX": 448,
+			"PositionY": 544,
+			"Width": 16,
+			"Height": 16,
+			"Type": "Ground"
+		},
+		{
+			"Name": "Dirt_2",
+			"PositionX": 448,
+			"PositionY": 560,
+			"Width": 16,
+			"Height": 16,
+			"Type": "Ground"
+		},
+		{
+			"Name": "Dirt_3",
+			"PositionX": 464,
+			"PositionY": 560,
+			"Width": 16,
+			"Height": 16,
+			"Type": "Ground"
+		},
+		{
+			"Name": "Dirt_4",
+			"PositionX": 464,
+			"PositionY": 576,
+			"Width": 16,
+			"Height": 16,
+			"Type": "Ground"
+		},
+		{
+			"Name": "Dirt_5",
+			"PositionX": 102,
+			"PositionY": 592,
+			"Width": 16,
+			"Height": 16,
+			"Type": "Ground"
+		},
+		{
+			"Name": "DryRock_1",
+			"PositionX": 96,
+			"PositionY": 464,
+			"Width": 16,
+			"Height": 16,
+			"Type": "Solid"
+		},
+		{
+			"Name": "DryRock_2",
+			"PositionX": 112,
+			"PositionY": 448,
+			"Width": 32,
+			"Height": 16,
+			"Type": "Solid"
+		},
+
+		{
+			"Name": "Cactus_1",
+			"PositionX": 49,
+			"PositionY": 501,
+			"Width": 16,
+			"Height": 16,
+			"Type": "Solid"
+		}
+
+	]
+}

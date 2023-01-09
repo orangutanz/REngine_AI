@@ -2,19 +2,32 @@
 #include <vector>
 #include <REngine.h>
 
+enum TileType
+{
+	Ground,
+	Solid
+};
 
-class Tilemap
+struct Tile
+{
+	std::string name = "name";
+	int textureIdx;
+	int height;
+	int width;
+	TileType type;
+};
+
+class TileMap
 {
 public:
-	void LoadTileMpa(const char* tileMap, int tileSize);
-	void LoadFiles(const char mapPath);
+	bool LoadMap(const std::string& filePath);
+	bool LoadTileFiles(const std::string& filePath);
 	void Render();
 
 private:
-	std::vector<int> mTIleMap;
+	std::vector<int> mMap;
+	std::vector<Tile> mTiles;
 	std::vector<Texture2D> mTileMapTextures;
 	int mRows;
 	int mColums;
-	int mHeight;
-	int mWidth;
 };

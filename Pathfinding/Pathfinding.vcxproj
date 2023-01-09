@@ -154,7 +154,14 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actor.h" />
+    <ClInclude Include="json.hpp" />
     <ClInclude Include="TileMap.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\Resources\DesertMap.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Resources\DesertTiles.json" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

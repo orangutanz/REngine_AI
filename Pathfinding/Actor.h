@@ -1,7 +1,5 @@
 #pragma once
 #include <REngine.h>
-#include <String>
-
 
 class Actor
 {

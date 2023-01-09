@@ -16,6 +16,7 @@
     <ClInclude Include="TileMap.h">
       <Filter>Headers</Filter>
     </ClInclude>
+    <ClInclude Include="json.hpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Headers">
@@ -24,5 +25,11 @@
     <Filter Include="Sources">
       <UniqueIdentifier>{cacb5808-a8b1-4bfe-8903-121babbf8d98}</UniqueIdentifier>
     </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\Resources\DesertMap.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Resources\DesertTiles.json" />
   </ItemGroup>
 </Project>
