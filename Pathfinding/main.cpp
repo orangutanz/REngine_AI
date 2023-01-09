@@ -32,7 +32,8 @@ bool GameUpdate()
 	{
 
 	}
-	
+
+	myTileMap.Render();
 	
 	DrawTexture(myTexture, position.x, position.y, WHITE);
 	

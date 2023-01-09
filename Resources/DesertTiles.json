@@ -1,69 +1,69 @@
 {
-	"ImageName": "Atlas",
-	"TileSize": "16",
+	"ImageName": "Atlas32",
+	"TileSize": "32",
 	"Tiles": [
 		{
 			"Name": "Dirt1",
-			"PositionX": 448,
-			"PositionY": 544,
-			"Width": 16,
-			"Height": 16,
+			"PositionX": 896,
+			"PositionY": 1088,
+			"Width": 32,
+			"Height": 32,
 			"Type": "Ground"
 		},
 		{
 			"Name": "Dirt2",
-			"PositionX": 448,
-			"PositionY": 560,
-			"Width": 16,
-			"Height": 16,
+			"PositionX": 896,
+			"PositionY": 1120,
+			"Width": 32,
+			"Height": 32,
 			"Type": "Ground"
 		},
 		{
 			"Name": "Dirt3",
-			"PositionX": 464,
-			"PositionY": 560,
-			"Width": 16,
-			"Height": 16,
+			"PositionX": 928,
+			"PositionY": 1120,
+			"Width": 32,
+			"Height": 32,
 			"Type": "Ground"
 		},
 		{
 			"Name": "Dirt4",
-			"PositionX": 464,
-			"PositionY": 576,
-			"Width": 16,
-			"Height": 16,
+			"PositionX": 928,
+			"PositionY": 1152,
+			"Width": 32,
+			"Height": 32,
 			"Type": "Ground"
 		},
 		{
 			"Name": "Dirt5",
-			"PositionX": 102,
-			"PositionY": 592,
-			"Width": 16,
-			"Height": 16,
+			"PositionX": 204,
+			"PositionY": 1184,
+			"Width": 32,
+			"Height": 32,
 			"Type": "Ground"
 		},
 		{
 			"Name": "DryRock1",
-			"PositionX": 96,
-			"PositionY": 464,
-			"Width": 16,
-			"Height": 16,
+			"PositionX": 192,
+			"PositionY": 928,
+			"Width": 32,
+			"Height": 32,
 			"Type": "Solid"
 		},
 		{
 			"Name": "DryRock2",
-			"PositionX": 112,
-			"PositionY": 448,
-			"Width": 32,
-			"Height": 16,
+			"PositionX": 224,
+			"PositionY": 892,
+			"Width": 64,
+			"Height": 32,
 			"Type": "Solid"
 		},
 		{
 			"Name": "Cactus1",
-			"PositionX": 49,
-			"PositionY": 501,
-			"Width": 16,
-			"Height": 16,
+			"PositionX": 98,
+			"PositionY": 1002,
+			"Width": 32,
+			"Height": 32,
 			"Type": "Solid"
 		}
 

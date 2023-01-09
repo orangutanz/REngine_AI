@@ -66,5 +66,11 @@ bool TileMap::LoadTileFiles(const std::string& filePath)
 
 void TileMap::Render()
 {
-
+	Vector2 tilePos = { 0.0f , 0.0f };
+	for (auto i : mTiles)
+	{
+		Rectangle rec = { i.PositionX,i.PositionY,i.width,i.height };
+		DrawTextureRec(mTileMapTextures[i.textureMapIdx], rec, tilePos, WHITE);
+		tilePos.x += 32.f;
+	}
 }

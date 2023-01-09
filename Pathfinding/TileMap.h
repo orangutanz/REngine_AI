@@ -19,6 +19,7 @@ struct Tile
 	TileType type;
 };
 
+
 class TileMap
 {
 public:
@@ -30,6 +31,7 @@ private:
 	std::vector<int> mMap;
 	std::vector<Tile> mTiles;
 	std::vector<Texture2D> mTileMapTextures;
+
 	int mRows;
 	int mColums;
 };
