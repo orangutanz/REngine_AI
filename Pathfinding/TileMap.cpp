@@ -97,7 +97,7 @@ bool TileMap::GenerateMap(const int rows, const int colums)
 		return false;
 	}
 	//uniformed randomizer
-	std::uniform_int_distribution<std::mt19937::result_type> udist(0, 5);
+	std::uniform_int_distribution<std::mt19937::result_type> udist(0, mGroundTiles.size()-1);
 	std::mt19937 rng;
 	std::random_device rd;
 	rng.seed(rd());
