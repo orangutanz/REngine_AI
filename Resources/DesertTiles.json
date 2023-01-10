@@ -3,6 +3,14 @@
 	"TileSize": 32,
 	"Tiles": [
 		{
+			"Name": "Dirt0",
+			"PositionX": 928,
+			"PositionY": 1088,
+			"Width": 32,
+			"Height": 32,
+			"Type": "Ground"
+		},
+		{
 			"Name": "Dirt1",
 			"PositionX": 896,
 			"PositionY": 1088,

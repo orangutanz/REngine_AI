@@ -25,11 +25,13 @@ class TileMap
 public:
 	bool LoadMap(const std::string& filePath);
 	bool LoadTileFiles(const std::string& filePath);
+	bool GenerateMap(const int rows, const int colums);
 	void Render();
 
 private:
 	std::vector<int> mMap;
-	std::vector<Tile> mTiles;
+	std::vector<Tile> mGroundTiles;
+	std::vector<Tile> mSolidTiles;
 	std::vector<Texture2D> mTileMapTextures;
 
 	int mRows;

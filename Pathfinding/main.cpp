@@ -17,7 +17,8 @@ void GameInint()
 	myTexture = LoadTexture(fullPath.c_str());
 
 	myTileMap.LoadTileFiles("DesertTiles.json"); 
-	myTileMap.LoadMap("DesertMap.json"); 
+	//myTileMap.LoadMap("DesertMap.json"); 
+	myTileMap.GenerateMap(20, 30);
 }
 
 //game loop

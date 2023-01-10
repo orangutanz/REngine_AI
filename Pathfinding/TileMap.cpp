@@ -1,11 +1,13 @@
 #include <fstream>
 #include <iostream>
+#include <random>
 #include <string>
 #include "TileMap.h"
 #include "json.hpp"
 
 using namespace std;
 using json = nlohmann::json;
+
 
 bool TileMap::LoadMap(const std::string& filePath)
 {
@@ -76,11 +78,40 @@ bool TileMap::LoadTileFiles(const std::string& filePath)
 		if (tileType == "Solid")
 		{
 			newTile.type = Solid;
+			mSolidTiles.emplace_back(newTile);
 		}
-		mTiles.emplace_back(newTile);
+		else
+		{
+			mGroundTiles.emplace_back(newTile);
+		}
 	}
 
 	f.close();
+	return true;
+}
+
+bool TileMap::GenerateMap(const int rows, const int colums)
+{	
+	if (mGroundTiles.empty())
+	{
+		return false;
+	}
+	//uniformed randomizer
+	std::uniform_int_distribution<std::mt19937::result_type> udist(0, 5);
+	std::mt19937 rng;
+	std::random_device rd;
+	rng.seed(rd());
+
+	mMap.clear();
+	mRows = rows;
+	mColums = colums;
+	for (int i = 0; i < mRows; ++i)
+	{
+		for (int j = 0; j < mColums; ++j)
+		{
+			mMap.push_back(udist(rng));
+		}
+	}
 	return true;
 }
 
@@ -94,9 +125,9 @@ void TileMap::Render()
 	{
 		for (int j = 0; j < mColums; ++j)
 		{
-			tilePos = { (float)i * mTileSize,(float)j * mTileSize };
+			tilePos = { (float)j * mTileSize,(float)i * mTileSize };
 			int tileIdx = mMap[mapIdx];
-			Tile tile = mTiles[tileIdx];
+			Tile tile = mGroundTiles[tileIdx];
 			rec.x = tile.PositionX;
 			rec.y = tile.PositionY;
 			rec.width = tile.width;
