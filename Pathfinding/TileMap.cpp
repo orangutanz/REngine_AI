@@ -137,4 +137,12 @@ void TileMap::Render()
 			mapIdx++;
 		}
 	}
+
+	//DrawLine()
+	
+}
+
+void TileMap::DebugRender()
+{
+
 }

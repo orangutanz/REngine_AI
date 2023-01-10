@@ -1,6 +1,6 @@
 #pragma once
-#include <vector>
 #include <REngine.h>
+#include <AI.h>
 
 enum TileType
 {
@@ -27,6 +27,7 @@ public:
 	bool LoadTileFiles(const std::string& filePath);
 	bool GenerateMap(const int rows, const int colums);
 	void Render();
+	void DebugRender();
 
 private:
 	std::vector<int> mMap;
