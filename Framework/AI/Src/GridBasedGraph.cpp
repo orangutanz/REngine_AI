@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include "Precompiled.h"
 #include "GridBasedGraph.h"
 
