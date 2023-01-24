@@ -22,9 +22,16 @@ namespace AI
 			std::array<Node*, 8> neighbors = {};
 			int column = 0;
 			int row = 0;
+
+			//Search parameters for pathfinding
+			Node* parent = nullptr;
+			bool opened = false;
+			bool closed = false;
 		};
 
-		void initialize(int columns, int rows);
+		void Initialize(int columns, int rows);
+		void ResetSearchParameters();
+
 		Node* GetNode(int x, int y);
 		const Node* GetNode(int x, int y) const;
 
