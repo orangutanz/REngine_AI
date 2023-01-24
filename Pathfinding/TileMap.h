@@ -27,14 +27,26 @@ public:
 	bool LoadTileFiles(const std::string& filePath);
 	bool GenerateMap(const int rows, const int colums);
 	void Render();
-	void DebugRender();
+	void RenderPath(std::vector<REng::Math::Vector2> &path);
+
+	bool IsBlocked(int x, int y) const;
+	std::vector<REng::Math::Vector2> FindPathBFS(int startX, int startY, int endX, int endY);
+
+	void DrawSolidTile(int idx, float x, float y);
 
 private:
+
+	REng::Math::Vector2 GetPixelPosition(int x, int y) const;
+
 	std::vector<int> mMap;
 	std::vector<Tile> mGroundTiles;
 	std::vector<Tile> mSolidTiles;
 	std::vector<Texture2D> mTileMapTextures;
 
+	AI::GridBasedGraph mGridBasedGraph;
+	AI::NodeList mClosedList;
+
+	
 	int mRows;
 	int mColums;
 	int mTileSize;

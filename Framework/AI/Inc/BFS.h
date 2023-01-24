@@ -12,6 +12,7 @@ namespace AI
 		const NodeList& GetClosedList() const { return mClosedList; }
 
 	private:
+
 		NodeList mOpenList;
 		NodeList mClosedList;
 	};

@@ -6,6 +6,7 @@
 #include "json.hpp"
 
 using namespace std;
+using namespace AI;
 using json = nlohmann::json;
 
 
@@ -29,7 +30,6 @@ bool TileMap::LoadMap(const std::string& filePath)
 	{
 		mMap.push_back(i);
 	}
-	mMap.size();
 
 	return true;
 }
@@ -112,6 +112,31 @@ bool TileMap::GenerateMap(const int rows, const int colums)
 			mMap.push_back(udist(rng));
 		}
 	}
+
+
+	//Implement this 
+	//TODO
+	mGridBasedGraph.Initialize(mColums, mRows);
+
+	//for()
+	//	for()
+	//		//Connect the nodes to it's neighbors
+	//		mGridBasedGraph.GetNode(4, 5)->neighbors[AI::GridBasedGraph::Directions::East] = mGridBasedGraph.GetNode(5, 5);
+
+	auto GetNeighbor = [&](int x, int y) -> GridBasedGraph::Node*
+	{
+		auto node = mGridBasedGraph.GetNode(x, y);
+
+		if (node == nullptr)
+			return nullptr;
+
+		if (IsBlocked(x, y))
+			return nullptr;
+
+		return node;
+	};
+
+
 	return true;
 }
 
@@ -138,11 +163,65 @@ void TileMap::Render()
 		}
 	}
 
-	//DrawLine()
 	
 }
 
-void TileMap::DebugRender()
+void TileMap::RenderPath(std::vector<REng::Math::Vector2>& path)
+{
+	for (auto i : path)
+	{
+		DrawCircle(i.x, i.y, 16, GREEN);
+	}
+
+}
+
+bool TileMap::IsBlocked(int x, int y) const
 {
 
+	return false;
+}
+
+std::vector<REng::Math::Vector2> TileMap::FindPathBFS(int startX, int startY, int endX, int endY)
+{
+	std::vector<REng::Math::Vector2> path;
+	NodeList closedList;
+
+	BFS bfs;
+	if (bfs.Run(mGridBasedGraph, startX /32, startY /32, endX /32, endY /32))
+	{
+		closedList = bfs.GetClosedList();
+		auto node = closedList.back();
+		while (node != nullptr)
+		{
+			path.push_back(GetPixelPosition(node->column, node->row));
+			node = node->parent;
+		}
+		std::reverse(path.begin(), path.end());
+	}
+	else
+	{
+		mClosedList = bfs.GetClosedList();
+	}
+
+	return path;
+}
+
+void TileMap::DrawSolidTile(int idx, float x, float y)
+{
+	if (idx > -1 && idx < mSolidTiles.size())
+	{
+		Rectangle rec;
+		Tile tile = mSolidTiles[idx];
+		rec.x = tile.PositionX;
+		rec.y = tile.PositionY;
+		rec.width = tile.width;
+		rec.height = tile.height;
+
+		DrawTextureRec(mTileMapTextures[tile.textureMapIdx], rec, {x,y}, WHITE);
+	}
+}
+
+REng::Math::Vector2 TileMap::GetPixelPosition(int x, int y) const
+{
+	return { x * 32.f,y * 32.f };
 }

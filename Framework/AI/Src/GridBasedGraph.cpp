@@ -15,10 +15,20 @@ void GridBasedGraph::Initialize(int columns, int rows)
 
 	for (int y = 0; y < mRows; ++y)
 	{
-		for (int x = 0; x < mRows; ++x)
+		for (int x = 0; x < mColumns; ++x)
 		{
-			mNodes[GetIdx(x, y)].column = x;
-			mNodes[GetIdx(x, y)].row = y;
+			int idx = GetIdx(x, y);
+			mNodes[idx].column = x;
+			mNodes[idx].row = y;
+
+			mNodes[idx].neighbors[0] = GetNode(x, y - 1);//North
+			mNodes[idx].neighbors[1] = GetNode(x, y + 1);//South
+			mNodes[idx].neighbors[2] = GetNode(x + 1, y);//East
+			mNodes[idx].neighbors[3] = GetNode(x - 1, y);//West
+			mNodes[idx].neighbors[4] = GetNode(x + 1, y - 1);//NorthEast
+			mNodes[idx].neighbors[5] = GetNode(x - 1, y - 1);//NorthWest
+			mNodes[idx].neighbors[6] = GetNode(x + 1, y + 1);//SouthEast
+			mNodes[idx].neighbors[7] = GetNode(x - 1, y + 1);//SouthWest
 		}
 	}
 }

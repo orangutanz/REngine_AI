@@ -5,16 +5,20 @@
 #include "Actor.h"
 #include "TileMap.h"
 
-REng::Math::Vector2 position;
-Texture2D myTexture;
+REng::Math::Vector2 birdPosition;
+Texture2D BirdTexture;
+REng::Math::Vector2 goalPosition;
+Tile goalTile;
 TileMap myTileMap;
+std::vector<REng::Math::Vector2> debugPath;
+
 
 //initialized game infos
 void GameInint()
 {
 	std::string fullPath;
-	REng::ResourcesFullPath("bird.png", fullPath);
-	myTexture = LoadTexture(fullPath.c_str());
+	REng::ResourcesFullPath("bird32.png", fullPath);
+	BirdTexture = LoadTexture(fullPath.c_str());
 
 	myTileMap.LoadTileFiles("DesertTiles.json"); 
 	//myTileMap.LoadMap("DesertMap.json"); 
@@ -25,19 +29,13 @@ void GameInint()
 bool GameUpdate()
 {
 	//inputs
-	if (IsKeyDown(KeyboardKey::KEY_RIGHT))
-	{
-
-	}
-	if (IsKeyDown(KeyboardKey::KEY_LEFT))
-	{
-
-	}
 
 	myTileMap.Render();
+	myTileMap.RenderPath(debugPath);
 	
-	DrawTexture(myTexture, position.x, position.y, WHITE);
-	
+	DrawTexture(BirdTexture, birdPosition.x, birdPosition.y, WHITE);
+	myTileMap.DrawSolidTile(2, goalPosition.x, goalPosition.y);
+
 	bool isStopped = IsKeyPressed(KeyboardKey::KEY_ESCAPE);
 	
 	return isStopped;
@@ -51,6 +49,21 @@ void GameCleanup()
 void RenderDebugUI()
 {
 	ImGui::Begin("DEBUG");
+
+	ImGui::SliderFloat("Start X", &birdPosition.x, 1.f, 900.f);
+	ImGui::SliderFloat("Start Y", &birdPosition.y, 1.f, 600.f);
+
+	ImGui::SliderFloat("End X", &goalPosition.x, 1.f, 900.f);
+	ImGui::SliderFloat("End Y", &goalPosition.y, 1.f, 600.f);
+	if (ImGui::Button("Reset Path"))
+	{
+		debugPath.clear();
+	}
+	if (ImGui::Button("Run BFS"))
+	{
+		debugPath = myTileMap.FindPathBFS(birdPosition.x, birdPosition.y, goalPosition.x, goalPosition.y);
+	}
+
 	ImGui::End();
 }
 
