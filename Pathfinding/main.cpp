@@ -11,7 +11,6 @@ REng::Math::Vector2 goalPosition;
 Tile goalTile;
 TileMap myTileMap;
 std::vector<REng::Math::Vector2> debugPath;
-std::vector<REng::Math::Vector2> debugLines;
 
 
 //initialized game infos
@@ -67,7 +66,7 @@ void RenderDebugUI()
 	}
 	if (ImGui::Button("Run DFS"))
 	{
-		debugPath = myTileMap.FindPathBFS(birdPosition.x, birdPosition.y, goalPosition.x, goalPosition.y);
+		debugPath = myTileMap.FindPathDFS(birdPosition.x, birdPosition.y, goalPosition.x, goalPosition.y);
 	}
 
 	ImGui::End();

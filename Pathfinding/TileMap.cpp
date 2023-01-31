@@ -168,7 +168,6 @@ void TileMap::Render()
 
 void TileMap::RenderPath(std::vector<REng::Math::Vector2>& path)
 {
-	auto offset = mTileSize / 2;
 	for (auto node : mClosedList)
 	{
 		if (node->parent)
@@ -180,8 +179,7 @@ void TileMap::RenderPath(std::vector<REng::Math::Vector2>& path)
 	}
 	for (auto i : path)
 	{
-		
-		DrawCircle(i.x, i.y , 16, GREEN);
+		DrawCircle(i.x , i.y, 16, GREEN);
 	}
 
 }
@@ -195,22 +193,20 @@ bool TileMap::IsBlocked(int x, int y) const
 std::vector<REng::Math::Vector2> TileMap::FindPathBFS(float startX, float startY, float endX, float endY)
 {
 	std::vector<REng::Math::Vector2> path;
-	NodeList closedList;
 	auto startIdx = GetIndexPosition(startX, startY);
 	auto endIdx = GetIndexPosition(endX, endY);
 
 	BFS bfs;
 	if (bfs.Run(mGridBasedGraph, startIdx[0] , startIdx[1], endIdx[0], endIdx[1]))
 	{
-		closedList = bfs.GetClosedList();
-		auto node = closedList.back();
+		mClosedList = bfs.GetClosedList();
+		auto node = mClosedList.back();
 		while (node != nullptr)
 		{
 			path.push_back(GetPixelPosition(node->column, node->row));
 			node = node->parent;
 		}
 		std::reverse(path.begin(), path.end());
-		mClosedList = bfs.GetClosedList();
 	}
 	else
 	{
@@ -226,6 +222,18 @@ std::vector<REng::Math::Vector2> TileMap::FindPathDFS(float startX, float startY
 	auto startIdx = GetIndexPosition(startX, startY);
 	auto endIdx = GetIndexPosition(endX, endY);
 
+	DFS dfs;
+	if (dfs.Run(mGridBasedGraph, startIdx[0], startIdx[1], endIdx[0], endIdx[1]))
+	{
+		mClosedList = dfs.GetClosedList();
+		auto node = mClosedList.back();
+		while (node != nullptr)
+		{
+			path.push_back(GetPixelPosition(node->column, node->row));
+			node = node->parent;
+		}
+		std::reverse(path.begin(), path.end());
+	}
 	
 	return path;
 }

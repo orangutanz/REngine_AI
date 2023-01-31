@@ -6,8 +6,6 @@
 using namespace AI;
 
 
-using namespace AI;
-
 bool DFS::Run(GridBasedGraph& graph, int startX, int startY, int endX, int endY)
 {
 	//Reset everything
@@ -22,16 +20,6 @@ bool DFS::Run(GridBasedGraph& graph, int startX, int startY, int endX, int endY)
 	auto node = graph.GetNode(startX, startY);
 	mOpenList.push_back(node);
 	node->opened = true;
-
-	//TODO
-	//		while end node not reached && open list isn't empty:
-	//			select node N from open list ----> Depend on your startegy
-	//			if node is end
-	//				found = true
-	//			else expand node N :
-	//				if expanded node isn't in open list nor closed list
-	//					add expanded node to open list, set parent
-	//			Add node N to closed list
 
 	while (!found && !mOpenList.empty())
 	{
@@ -57,7 +45,7 @@ bool DFS::Run(GridBasedGraph& graph, int startX, int startY, int endX, int endY)
 			{
 				i->parent = node;
 				i->opened = true;
-				mOpenList.push_back(i);
+				mOpenList.push_front(i);
 			}
 		}
 	}
