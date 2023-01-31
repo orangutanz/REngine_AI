@@ -181,13 +181,15 @@ bool TileMap::IsBlocked(int x, int y) const
 	return false;
 }
 
-std::vector<REng::Math::Vector2> TileMap::FindPathBFS(int startX, int startY, int endX, int endY)
+std::vector<REng::Math::Vector2> TileMap::FindPathBFS(float startX, float startY, float endX, float endY)
 {
 	std::vector<REng::Math::Vector2> path;
 	NodeList closedList;
+	auto startIdx = GetIndexPosition(startX, startY);
+	auto endIdx = GetIndexPosition(endX, endY);
 
 	BFS bfs;
-	if (bfs.Run(mGridBasedGraph, startX /32, startY /32, endX /32, endY /32))
+	if (bfs.Run(mGridBasedGraph, startIdx[0] , startIdx[1], endIdx[0], endIdx[1]))
 	{
 		closedList = bfs.GetClosedList();
 		auto node = closedList.back();
@@ -221,7 +223,17 @@ void TileMap::DrawSolidTile(int idx, float x, float y)
 	}
 }
 
-REng::Math::Vector2 TileMap::GetPixelPosition(int x, int y) const
+REng::Math::Vector2 TileMap::GetPixelPosition(int index_X, int index_Y) const
 {
-	return { x * 32.f,y * 32.f };
+	return { index_X * 32.f,index_Y * 32.f };
+}
+
+
+std::vector<int> TileMap::GetIndexPosition(float pixel_x, float pixel_y) 
+{
+	float width = GetWidth();
+	float height = GetHeight();
+	int index_X = pixel_x / width * mColums;
+	int index_Y = pixel_y / height * mRows;
+	return { index_X,index_Y };
 }

@@ -30,13 +30,16 @@ public:
 	void RenderPath(std::vector<REng::Math::Vector2> &path);
 
 	bool IsBlocked(int x, int y) const;
-	std::vector<REng::Math::Vector2> FindPathBFS(int startX, int startY, int endX, int endY);
+	std::vector<REng::Math::Vector2> FindPathBFS(float startX, float startY, float endX, float endY);
 
 	void DrawSolidTile(int idx, float x, float y);
+	float GetWidth() { return mColums * mTileSize; }
+	float GetHeight() { return mRows * mTileSize; }
 
 private:
 
-	REng::Math::Vector2 GetPixelPosition(int x, int y) const;
+	REng::Math::Vector2 GetPixelPosition(int index_x, int index_y) const;
+	std::vector<int> GetIndexPosition(float pixel_x, float pixel_y);
 
 	std::vector<int> mMap;
 	std::vector<Tile> mGroundTiles;

@@ -14,7 +14,7 @@ bool BFS::Run(GridBasedGraph& graph, int startX, int startY, int endX, int endY)
 
 	bool found = false;
 
-	auto endNode = graph.GetNode(endX, endX);
+	auto endNode = graph.GetNode(endX, endY);
 	//add the start node to the opem list
 	auto node = graph.GetNode(startX, startY);
 	mOpenList.push_back(node);

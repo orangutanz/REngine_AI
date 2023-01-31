@@ -50,18 +50,23 @@ void RenderDebugUI()
 {
 	ImGui::Begin("DEBUG");
 
-	ImGui::SliderFloat("Start X", &birdPosition.x, 1.f, 900.f);
-	ImGui::SliderFloat("Start Y", &birdPosition.y, 1.f, 600.f);
+	ImGui::SliderFloat("Start X", &birdPosition.x, 1.f, myTileMap.GetWidth()-32);
+	ImGui::SliderFloat("Start Y", &birdPosition.y, 1.f, myTileMap.GetHeight()-32);
 
-	ImGui::SliderFloat("End X", &goalPosition.x, 1.f, 900.f);
-	ImGui::SliderFloat("End Y", &goalPosition.y, 1.f, 600.f);
+	ImGui::SliderFloat("End X", &goalPosition.x, 1.f, myTileMap.GetWidth()-32);
+	ImGui::SliderFloat("End Y", &goalPosition.y, 1.f, myTileMap.GetHeight()-32);
 	if (ImGui::Button("Reset Path"))
 	{
 		debugPath.clear();
 	}
 	if (ImGui::Button("Run BFS"))
 	{
-		debugPath = myTileMap.FindPathBFS(birdPosition.x, birdPosition.y, goalPosition.x, goalPosition.y);
+		
+		int startX = birdPosition.x;
+		int startY = birdPosition.y;
+		int endX = goalPosition.x;
+		int endY = goalPosition.y;
+		debugPath = myTileMap.FindPathBFS(startX, startY, endX, endY);
 	}
 
 	ImGui::End();
