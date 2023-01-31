@@ -168,9 +168,20 @@ void TileMap::Render()
 
 void TileMap::RenderPath(std::vector<REng::Math::Vector2>& path)
 {
+	auto offset = mTileSize / 2;
+	for (auto node : mClosedList)
+	{
+		if (node->parent)
+		{
+			REng::Math::Vector2 startPos = GetPixelPosition(node->parent->column, node->parent->row);
+			REng::Math::Vector2 endPos = GetPixelPosition(node->column, node->row);
+			DrawLine(startPos.x, startPos.y, endPos.x, endPos.y, RED);
+		}
+	}
 	for (auto i : path)
 	{
-		DrawCircle(i.x, i.y, 16, GREEN);
+		
+		DrawCircle(i.x, i.y , 16, GREEN);
 	}
 
 }
@@ -199,12 +210,23 @@ std::vector<REng::Math::Vector2> TileMap::FindPathBFS(float startX, float startY
 			node = node->parent;
 		}
 		std::reverse(path.begin(), path.end());
+		mClosedList = bfs.GetClosedList();
 	}
 	else
 	{
 		mClosedList = bfs.GetClosedList();
 	}
 
+	return path;
+}
+
+std::vector<REng::Math::Vector2> TileMap::FindPathDFS(float startX, float startY, float endX, float endY)
+{
+	std::vector<REng::Math::Vector2> path;
+	auto startIdx = GetIndexPosition(startX, startY);
+	auto endIdx = GetIndexPosition(endX, endY);
+
+	
 	return path;
 }
 
@@ -225,7 +247,7 @@ void TileMap::DrawSolidTile(int idx, float x, float y)
 
 REng::Math::Vector2 TileMap::GetPixelPosition(int index_X, int index_Y) const
 {
-	return { index_X * 32.f,index_Y * 32.f };
+	return { (index_X + 0.5f) * 32.f ,(index_Y + 0.5f) * 32.f };
 }
 
 
@@ -233,7 +255,7 @@ std::vector<int> TileMap::GetIndexPosition(float pixel_x, float pixel_y)
 {
 	float width = GetWidth();
 	float height = GetHeight();
-	int index_X = pixel_x / width * mColums;
+	int index_X = pixel_x / width * mColums;	
 	int index_Y = pixel_y / height * mRows;
 	return { index_X,index_Y };
 }

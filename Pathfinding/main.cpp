@@ -11,6 +11,7 @@ REng::Math::Vector2 goalPosition;
 Tile goalTile;
 TileMap myTileMap;
 std::vector<REng::Math::Vector2> debugPath;
+std::vector<REng::Math::Vector2> debugLines;
 
 
 //initialized game infos
@@ -55,18 +56,18 @@ void RenderDebugUI()
 
 	ImGui::SliderFloat("End X", &goalPosition.x, 1.f, myTileMap.GetWidth()-32);
 	ImGui::SliderFloat("End Y", &goalPosition.y, 1.f, myTileMap.GetHeight()-32);
+
 	if (ImGui::Button("Reset Path"))
 	{
 		debugPath.clear();
 	}
 	if (ImGui::Button("Run BFS"))
+	{		
+		debugPath = myTileMap.FindPathBFS(birdPosition.x, birdPosition.y, goalPosition.x, goalPosition.y);
+	}
+	if (ImGui::Button("Run DFS"))
 	{
-		
-		int startX = birdPosition.x;
-		int startY = birdPosition.y;
-		int endX = goalPosition.x;
-		int endY = goalPosition.y;
-		debugPath = myTileMap.FindPathBFS(startX, startY, endX, endY);
+		debugPath = myTileMap.FindPathBFS(birdPosition.x, birdPosition.y, goalPosition.x, goalPosition.y);
 	}
 
 	ImGui::End();

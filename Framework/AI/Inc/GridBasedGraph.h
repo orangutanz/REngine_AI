@@ -27,6 +27,12 @@ namespace AI
 			Node* parent = nullptr;
 			bool opened = false;
 			bool closed = false;
+
+			//Dijkstra and A* info
+			float g = 0.0f;
+
+			//A* info
+			float h = 0.0f;
 		};
 
 		void Initialize(int columns, int rows);

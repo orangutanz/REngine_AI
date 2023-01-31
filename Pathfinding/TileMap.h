@@ -31,6 +31,7 @@ public:
 
 	bool IsBlocked(int x, int y) const;
 	std::vector<REng::Math::Vector2> FindPathBFS(float startX, float startY, float endX, float endY);
+	std::vector<REng::Math::Vector2> FindPathDFS(float startX, float startY, float endX, float endY);
 
 	void DrawSolidTile(int idx, float x, float y);
 	float GetWidth() { return mColums * mTileSize; }

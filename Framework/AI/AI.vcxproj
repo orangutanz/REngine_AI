@@ -154,6 +154,8 @@
     <ClInclude Include="Inc\AI.h" />
     <ClInclude Include="Inc\BFS.h" />
     <ClInclude Include="Inc\Common.h" />
+    <ClInclude Include="Inc\DFS.h" />
+    <ClInclude Include="Inc\Dijkstra.h" />
     <ClInclude Include="Inc\GridBasedGraph.h" />
     <ClInclude Include="Src\Precompiled.h" />
     <ClInclude Include="Src\stdafx.h" />
@@ -161,6 +163,8 @@
   <ItemGroup>
     <ClCompile Include="Src\AI.cpp" />
     <ClCompile Include="Src\BFS.cpp" />
+    <ClCompile Include="Src\DFS.cpp" />
+    <ClCompile Include="Src\Dijkstra.cpp" />
     <ClCompile Include="Src\GridBasedGraph.cpp" />
     <ClCompile Include="Src\Precompiled.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
