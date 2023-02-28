@@ -102,6 +102,7 @@ bool TileMap::GenerateMap(const int rows, const int colums)
 	std::random_device rd;
 	rng.seed(rd());
 
+	//Generate background
 	mMap.clear();
 	mRows = rows;
 	mColums = colums;
@@ -112,10 +113,7 @@ bool TileMap::GenerateMap(const int rows, const int colums)
 			mMap.push_back(udist(rng));
 		}
 	}
-
-
-	//Implement this 
-	//TODO
+	//Initialize empty grid
 	mGridBasedGraph.Initialize(mColums, mRows);
 
 	//for()
@@ -186,7 +184,7 @@ void TileMap::RenderPath(std::vector<REng::Math::Vector2>& path)
 
 bool TileMap::IsBlocked(int x, int y) const
 {
-
+	//Check index pos is blocked
 	return false;
 }
 

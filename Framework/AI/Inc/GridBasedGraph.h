@@ -28,7 +28,7 @@ namespace AI
 			bool opened = false;
 			bool closed = false;
 
-			//Dijkstra and A* info
+			//Dijkstra and A*
 			float g = 0.0f;
 
 			//A* info
