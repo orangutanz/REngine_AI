@@ -28,6 +28,12 @@
     <Filter Include="Src\Steering">
       <UniqueIdentifier>{06e8c734-42ff-45df-974d-e12e028ce550}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Inc\Math">
+      <UniqueIdentifier>{8069f9a5-4962-4bd0-a2f5-c84e2a456974}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Math">
+      <UniqueIdentifier>{bab38829-4672-4b49-a994-ea8081977a6b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Inc\Common.h">
@@ -60,7 +66,7 @@
     <ClInclude Include="Inc\AIWorld.h">
       <Filter>Inc\World</Filter>
     </ClInclude>
-    <ClInclude Include="Inc\SteeringBehaviour.h">
+    <ClInclude Include="Inc\SteeringBehavior.h">
       <Filter>Inc\Steering</Filter>
     </ClInclude>
     <ClInclude Include="Inc\SteeringModule.h">
@@ -74,6 +80,18 @@
     </ClInclude>
     <ClInclude Include="Inc\Agent.h">
       <Filter>Inc\World</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\EMath.h">
+      <Filter>Inc\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\MathDefinition.h">
+      <Filter>Inc\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\SeekBehavior.h">
+      <Filter>Inc\Steering</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\WanderBehavior.h">
+      <Filter>Inc\Steering</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -106,6 +124,15 @@
     </ClCompile>
     <ClCompile Include="Src\Agent.cpp">
       <Filter>Src\World</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\MathDefinition.cpp">
+      <Filter>Src\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\SeekBehavior.cpp">
+      <Filter>Src\Steering</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\WanderBehavior.cpp">
+      <Filter>Src\Steering</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

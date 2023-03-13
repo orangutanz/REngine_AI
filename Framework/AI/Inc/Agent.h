@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Entity.h"
+#include "EMath.h"
 
 namespace AI
 {
@@ -15,6 +16,9 @@ namespace AI
 
 		void SetAgentTarget(Agent* _target);
 
+		EMath::Matrix3  GetWorldTransform() const;
+
+		std::vector<Agent*> neighbors;
 		float velX = 0.f;
 		float velY = 0.f;
 		float destX = 0.f;

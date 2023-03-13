@@ -16,5 +16,14 @@
 #include "State.h"
 #include "StateMachine.h"
 
+//Steering
+#include "SeekBehavior.h"
+#include "SteeringBehavior.h"
+#include "SteeringModule.h"
+#include "WanderBehavior.h"
+
+//Math
+#include "EMath.h"
+#include "MathDefinition.h"
 
 
