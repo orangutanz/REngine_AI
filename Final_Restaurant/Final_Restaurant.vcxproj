@@ -178,6 +178,9 @@
     <ClInclude Include="Waiter.h" />
     <ClInclude Include="WaiterStates.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Resources\BarTiles.json" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
