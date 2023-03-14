@@ -1,0 +1,14 @@
+{
+  "ImageName": "BarAsset",
+  "TileSize": 64,
+  "Tiles": [
+    {
+      "Name": "Food_0",
+      "PositionX": 256,
+      "PositionY": 384,
+      "Width": 64,
+      "Height":64,
+      "Type": "Object"
+    }
+  ]
+}

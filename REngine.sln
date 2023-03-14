@@ -25,6 +25,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Steering", "Steering\Steeri
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EMath", "Framework\EMath\EMath\EMath.vcxproj", "{F6267A9F-6B85-4F9D-BF25-F4A351D972E2}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Final_Restaurant", "Final_Restaurant\Final_Restaurant.vcxproj", "{0F652006-85F6-4717-A1AB-4E060FB8A9D3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -97,6 +99,14 @@ Global
 		{F6267A9F-6B85-4F9D-BF25-F4A351D972E2}.Release|x64.Build.0 = Release|x64
 		{F6267A9F-6B85-4F9D-BF25-F4A351D972E2}.Release|x86.ActiveCfg = Release|Win32
 		{F6267A9F-6B85-4F9D-BF25-F4A351D972E2}.Release|x86.Build.0 = Release|Win32
+		{0F652006-85F6-4717-A1AB-4E060FB8A9D3}.Debug|x64.ActiveCfg = Debug|x64
+		{0F652006-85F6-4717-A1AB-4E060FB8A9D3}.Debug|x64.Build.0 = Debug|x64
+		{0F652006-85F6-4717-A1AB-4E060FB8A9D3}.Debug|x86.ActiveCfg = Debug|Win32
+		{0F652006-85F6-4717-A1AB-4E060FB8A9D3}.Debug|x86.Build.0 = Debug|Win32
+		{0F652006-85F6-4717-A1AB-4E060FB8A9D3}.Release|x64.ActiveCfg = Release|x64
+		{0F652006-85F6-4717-A1AB-4E060FB8A9D3}.Release|x64.Build.0 = Release|x64
+		{0F652006-85F6-4717-A1AB-4E060FB8A9D3}.Release|x86.ActiveCfg = Release|Win32
+		{0F652006-85F6-4717-A1AB-4E060FB8A9D3}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -110,6 +120,7 @@ Global
 		{FBE9096E-CFD7-4C8C-8418-4867E033F332} = {3064C18D-24A1-4D70-A6D7-F6F2CEBFAAFF}
 		{28B1CD38-9AA2-4DB8-9CF7-AF5935D5E186} = {3064C18D-24A1-4D70-A6D7-F6F2CEBFAAFF}
 		{F6267A9F-6B85-4F9D-BF25-F4A351D972E2} = {C0CC240D-DDF1-4024-B0CB-F115A6306ABD}
+		{0F652006-85F6-4717-A1AB-4E060FB8A9D3} = {3064C18D-24A1-4D70-A6D7-F6F2CEBFAAFF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C4FB3008-B2EC-47AA-BFEF-79C4A67CE230}

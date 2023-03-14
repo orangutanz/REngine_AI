@@ -44,6 +44,8 @@ namespace AI
 		int GetColumns() { return mColumns; }
 		int GetRows() { return mRows; }
 
+
+
 	private:
 		int GetIdx(int x, int y)const;
 
