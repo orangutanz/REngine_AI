@@ -13,7 +13,7 @@ public:
 		DeliverFood
 	};
 	Waiter(AI::AIWorld& world);
-	void Load();
+	void Load(int type);
 	void Unload();
 	void Update(float deltaTime);
 	void Render();

@@ -10,7 +10,7 @@ Waiter::Waiter(AI::AIWorld& world)
 	: Agent(world, Types::CustomerID)
 {}
 
-void Waiter::Load()
+void Waiter::Load(int type)
 {	
 	//Setup state machine
 	mStateMachine = std::make_unique<AI::StateMachine<Waiter>>(*this);
@@ -20,7 +20,14 @@ void Waiter::Load()
 	mStateMachine->ChangeState(Waiter::State::Idle);
 
 	std::string filePath;
-	REng::ResourcesFullPath("Waiter.png", filePath);
+	if (type == 2)
+	{
+		REng::ResourcesFullPath("Waiter2.png", filePath);
+	}
+	else
+	{
+		REng::ResourcesFullPath("Waiter.png", filePath);
+	}
 	mWaiterSprite = LoadTexture(filePath.c_str());
 
 	posX = 160;

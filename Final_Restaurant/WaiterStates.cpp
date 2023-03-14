@@ -61,7 +61,7 @@ void WaiterDeliverFood::Update(Waiter& agent, float deltaTime)
 		agent.SetFood(false);
 		agent.ChangeState(Waiter::State::Idle);
 	}
-	DrawText("DeliverFood", agent.posX + 20.f, agent.posY - 100.f, 24, WHITE);
+	DrawText("DeliverFood", agent.posX + 20.f, agent.posY - 100.f, 24, GREEN);
 
 }
 
@@ -105,7 +105,7 @@ void WaiterGetFood::Update(Waiter& agent, float deltaTime)
 		agent.ChangeState(Waiter::State::DeliverFood);
 	}
 
-	DrawText("GetFood", agent.posX + 20.f, agent.posY - 100.f, 24, WHITE);
+	DrawText("GetFood", agent.posX + 20.f, agent.posY - 100.f, 24, GOLD);
 }
 
 void WaiterGetFood::Exit(Waiter& agent)

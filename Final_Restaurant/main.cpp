@@ -26,6 +26,7 @@ namespace
 	std::unique_ptr<Seat> seat9;
 	std::unique_ptr<Kitchen> kitchen;
 	std::unique_ptr<Waiter> waiter;
+	std::unique_ptr<Waiter> waiter2;
 	std::vector<Customer*> customers;
 	std::vector<Texture2D> customerTextures;
 
@@ -34,6 +35,8 @@ namespace
 	TileMap myTileMap;
 
 	bool RenderGrid = false;
+	bool UsePathFind = true;
+	bool enableWaiter = false;
 
 	//uniformed randomizer
 	std::mt19937 rng;
@@ -59,6 +62,8 @@ void AddCustomer()
 void GameInint()
 {
 	world = std::make_unique<AI::AIWorld>();
+	myTileMap.LoadTileFiles("BarTiles.json");
+	myTileMap.GenerateMap(16, 24, 64);
 
 	//Seats&Kitchen
 	{
@@ -129,16 +134,14 @@ void GameInint()
 			
 			//random customer sprite 
 			std::uniform_int_distribution<std::mt19937::result_type> udist(0, customerTextures.size() - 1);
-			customers.back()->Load(customerTextures.at(udist(rng)));
+			customers.back()->Load(customerTextures.at(udist(rng)),myTileMap);
 		}
 	}
 	//Waiter(s)
 	waiter = std::make_unique<Waiter>(*world.get());
-	waiter.get()->Load();
-
-	myTileMap.LoadTileFiles("BarTiles.json");
-	myTileMap.GenerateMap(16, 24, 64);	
-
+	waiter.get()->Load(1);
+	waiter2 = std::make_unique<Waiter>(*world.get());
+	waiter2.get()->Load(2);
 
 }
 
@@ -151,10 +154,18 @@ bool GameUpdate()
 	for (auto c : customers)
 	{
 		c->Update(deltaTime);
-		c->Render();
+		if (c->GetActive())
+		{
+			c->Render();
+		}
 	}
-	waiter.get()->Update(deltaTime);
-	waiter.get()->Render();
+	if (enableWaiter)
+	{
+		waiter.get()->Update(deltaTime);
+		waiter.get()->Render();
+	}
+	waiter2.get()->Update(deltaTime);
+	waiter2.get()->Render();
 	//redner ojbects
 	{
 		seat1.get()->Render();
@@ -184,7 +195,14 @@ void RenderDebugUI()
 {
 	if (RenderGrid)
 	{
-		//myTileMap.RenderGrid(YELLOW);
+		myTileMap.RenderGrid(DARKGRAY);
+		for (auto c : customers)
+		{
+			if (c->GetActive())
+			{
+				c->DebugRender();
+			}
+		}
 	}
 	seat1.get()->DebugRender();
 	seat2.get()->DebugRender();
@@ -198,10 +216,22 @@ void RenderDebugUI()
 
 	ImGui::Begin("DEBUG");
 	ImGui::Checkbox("Show Grid", &RenderGrid);
+	if (ImGui::Checkbox("Use PathFind", &UsePathFind))
+	{
+		for (auto c : customers)
+		{
+			c->SetUsePathFind(UsePathFind);
+		}
+	}
 	if (ImGui::Button("Add Customer"))
 	{
 		AddCustomer();
 	}
+	if (ImGui::Button("Second Waiter"))
+	{
+		enableWaiter = true;
+	}
+
 
 	ImGui::End();
 

@@ -39,12 +39,12 @@ public:
 	void DrawObejctTile(int idx, float x, float y);
 	float GetWidth() { return mColums * mTileSize; }
 	float GetHeight() { return mRows * mTileSize; }
-	
-
-private:
 
 	REng::Math::Vector2 GetPixelPosition(int index_x, int index_y) const;
 	std::vector<int> GetIndexPosition(float pixel_x, float pixel_y);
+
+
+private:
 
 	std::vector<int> mMap;
 	std::vector<Tile> mGroundTiles;

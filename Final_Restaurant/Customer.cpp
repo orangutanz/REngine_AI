@@ -1,6 +1,7 @@
 #include "Customer.h"
 #include "CustomerStates.h"
 #include "Seat.h"
+#include "TileMap.h"
 
 #include "TypeId.h"
 
@@ -9,7 +10,7 @@ Customer::Customer(AI::AIWorld& world)
 	: Agent(world, Types::CustomerID)
 {}
 
-void Customer::Load(const Texture2D& Sprite)
+void Customer::Load(const Texture2D& Sprite, TileMap& tileMap)
 {
 	//Setup state machine
 	mStateMachine = std::make_unique<AI::StateMachine<Customer>>(*this);
@@ -18,6 +19,7 @@ void Customer::Load(const Texture2D& Sprite)
 	mStateMachine->AddState<CustomerEating>();
 	mStateMachine->AddState<CustomerLeaving>();
 
+	mTileMap = &tileMap;
 	mCustomerSprite = Sprite;
 }
 
@@ -32,6 +34,22 @@ void Customer::Update(float deltaTime)
 	if (mIsActive)
 	{
 		mStateMachine->Update(deltaTime);
+		if (mUsePathFinding && !mPath.empty())
+		{
+			auto pathPos = mPath.front();
+			const float distance = sqrtf((posX - pathPos.x) * (posX - pathPos.x) + (posY - pathPos.y) * (posY - pathPos.y));
+			if (distance > 20.0f + radius)
+			{
+				velX = (pathPos.x - posX) * 10.f;
+				velY = (pathPos.y - posY) * 10.f;
+				posX += velX * deltaTime;
+				posY += velY * deltaTime;
+			}
+			else
+			{
+				mPath.erase(mPath.begin());
+			}
+		}
 	}
 }
 
@@ -44,6 +62,15 @@ void Customer::Render()
 		DrawTexture(mCustomerSprite, posX - halfWidth, posY - halfHeight, WHITE);
 		//DrawCircle(destX, destY, 6.0f, GREEN);
 
+
+	}
+}
+
+void Customer::DebugRender(bool debug)
+{
+	if (debug && mUsePathFinding)
+	{
+		mTileMap->RenderPath(mPath);
 	}
 }
 
@@ -54,6 +81,11 @@ void Customer::SetHaveFood(bool food)
 	{
 		mSeat->SetDrawFood(true);
 	}
+}
+
+void Customer::FindPathBFSTo(float endX, float endY)
+{			
+	mPath = mTileMap->FindPathBFS(posX, posY, endX, endY);
 }
 
 void Customer::LeaveSeat()

@@ -154,15 +154,15 @@ void TileMap::Render()
 
 void TileMap::RenderPath(std::vector<REng::Math::Vector2>& path)
 {
-	for (auto node : mClosedList)
-	{
-		if (node->parent)
-		{
-			REng::Math::Vector2 startPos = GetPixelPosition(node->parent->column, node->parent->row);
-			REng::Math::Vector2 endPos = GetPixelPosition(node->column, node->row);
-			DrawLine(startPos.x, startPos.y, endPos.x, endPos.y, RED);
-		}
-	}
+	//for (auto node : mClosedList)
+	//{
+	//	if (node->parent)
+	//	{
+	//		REng::Math::Vector2 startPos = GetPixelPosition(node->parent->column, node->parent->row);
+	//		REng::Math::Vector2 endPos = GetPixelPosition(node->column, node->row);
+	//		DrawLine(startPos.x, startPos.y, endPos.x, endPos.y, RED);
+	//	}
+	//}
 	for (auto i : path)
 	{
 		DrawCircle(i.x , i.y, 16, GREEN);
@@ -181,21 +181,15 @@ void TileMap::RenderGrid(Color color)
 			{
 				continue;
 			}
-			if (!node->closed)
+			for (auto n : node->neighbors)
 			{
-				for (auto n : node->neighbors)
+				if (n == nullptr)
 				{
-					if (n == nullptr)
-					{
-						continue;
-					}
-					if (!n->closed)
-					{
-						REng::Math::Vector2 startPos = GetPixelPosition(node->column, node->row);
-						REng::Math::Vector2 endPos = GetPixelPosition(n->column, n->row);
-						DrawLine(startPos.x, startPos.y, endPos.x, endPos.y, color);
-					}
+					continue;
 				}
+				REng::Math::Vector2 startPos = GetPixelPosition(node->column, node->row);
+				REng::Math::Vector2 endPos = GetPixelPosition(n->column, n->row);
+				DrawLine(startPos.x, startPos.y, endPos.x, endPos.y, color);				
 			}
 		}
 	}

@@ -22,7 +22,7 @@ public:
 	void Exit(Customer& agent) override;
 
 private:
-	float mWaitTime = 2.0f;
+	float mWaitTime = 1.0f;
 };
 
 class CustomerEating : public AI::State<Customer>
@@ -34,7 +34,7 @@ public:
 
 private:
 
-	float mEatingTime = 10.0f;
+	float mEatingTime = 6.0f;
 };
 
 class CustomerLeaving : public AI::State<Customer>
